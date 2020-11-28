@@ -1,0 +1,4 @@
+.bucardorc
+script.sh
+*.sql
+.env
