@@ -18,6 +18,8 @@ DOCKER_NETWORK_REMOVE := $(DOCKER) down --remove-orphans
 DOCKER_IMAGES := $(docker images -q 'docker_dengue_db' | uniq)
 DOCKER_REMOVE := docker rmi --force $(DOCKER_IMAGES) ###
 SERVICES := bucardo
+SERVICESDB1 := bucardo
+SERVICESDB2 := bucardo
 
 
 # Configure database in the container

@@ -1,16 +1,5 @@
 version: "3.8"
 services:
-    bucardo:
-      build:
-        context: ".."
-        dockerfile: "docker/Dockerfile"
-      env_file:
-        - ../.env
-      hostname: bucardo
-      ports:
-        - "45432:45432"
-      volumes:
-        - ${DBDATA_DIR}:/Data
     worker_db1:
       build:
         context: ".."

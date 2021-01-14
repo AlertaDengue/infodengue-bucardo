@@ -1,0 +1,15 @@
+FROM mdillon/postgis:9.6
+
+
+RUN apt-get -qq update --yes \
+    && apt-get -qq install --yes --no-install-recommends \
+    build-essential debconf git make wget\
+    ca-certificates locales gnupg2 sudo vim \
+    && rm -rf /var/lib/apt/lists/*
+
+sudo apt-get install libboolean-perl libdbd-mock-perl libdbd-pg-perl libanyevent-dbd-pg-perl libpg-hstore-perl libpgobject-perl
+
+sudo apt-get install libdbix-safe-perl
+
+RUN apt-get -qq update --yes \
+&& apt-get -qq install --yes libdbix-safe-perl libdbd-pg-perl libboolean-perl postgresql-plperl-9.6

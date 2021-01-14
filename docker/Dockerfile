@@ -20,4 +20,4 @@ ADD docker/script.sh /Bucardo
 
 WORKDIR /Bucardo
 
-
+EXPOSE 25432
