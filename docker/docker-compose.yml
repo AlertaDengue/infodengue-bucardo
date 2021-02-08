@@ -1,13 +1,17 @@
 version: "3.8"
 services:
-    bucardo:
-      build:
-        context: ".."
-        dockerfile: "docker/Dockerfile"
-      env_file:
-        - ../.env
-      hostname: bucardo
-      ports:
-        - "5432:5432"
-      volumes:
-        - ${DBDATA_DIR}:/Data
+  bucardo_manager:
+    build:
+      context: ".."
+      dockerfile: "docker/Dockerfile"
+    env_file:
+      - ../.env
+    hostname: bucardo
+    ports:
+      - "5432:5432"
+    volumes:
+      #- ./${DBDATA_DIR}/:Data
+      - "./Bucardo:/Bucardo"
+      - "./docker/pg_data/:/Data"
+    expose:
+      - 5432

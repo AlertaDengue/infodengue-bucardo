@@ -15,9 +15,9 @@ RUN mkdir -p /var/log/bucardo /var/run/bucardo \
 
 ADD docker/postgres_setup/* /docker-entrypoint-initdb.d/
 
-RUN mkdir /Bucardo
-ADD docker/script.sh /Bucardo
-
+#RUN mkdir /Bucardo
+#ADD docker/script.sh /Bucardo
+ADD docker/.bucardorc $HOME/.bucardorc
 WORKDIR /Bucardo
 
-
+EXPOSE 5432
