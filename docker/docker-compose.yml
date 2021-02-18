@@ -1,17 +1,17 @@
-version: "3.8"
+version: "3.3"
 services:
-  bucardo_manager:
+  manager:
     build:
       context: ".."
       dockerfile: "docker/Dockerfile"
     env_file:
       - ../.env
-    hostname: bucardo
+    hostname: db-manager
     ports:
-      - "5432:5432"
+      - "15432:15432"
     volumes:
-      #- ./${DBDATA_DIR}/:Data
-      - "./Bucardo:/Bucardo"
-      - "./docker/pg_data/:/Data"
+      - ${DBDATA_MANAGER}/:/var/lib/postgresql/data
+    restart: always
+    command: -p 15432
     expose:
-      - 5432
+      - "15432"
