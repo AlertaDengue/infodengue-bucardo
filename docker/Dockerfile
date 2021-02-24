@@ -23,5 +23,16 @@ RUN cd /tmp \
 && make \
 && make install
 
-ADD docker/.bucardorc $HOME/.bucardorc 
-ADD docker/postgres_setup/00-bucardo_roles.sql /docker-entrypoint-initdb.d/
+COPY docker/.bucardorc $HOME/.bucardorc
+
+# COPY docker/.pgpass $HOME/.pgpass
+# RUN chmod 0600 $HOME/.pgpass
+
+COPY docker/postgres_setup/00-bucardo_roles.sql /docker-entrypoint-initdb.d/
+
+COPY docker/entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+#RUN ./entrypoint.sh
+CMD ["/bin/bash","-c","/entrypoint.sh"]

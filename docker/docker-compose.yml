@@ -8,10 +8,10 @@ services:
       - ../.env
     hostname: db-manager
     ports:
-      - "15432:15432"
+      - "5432:5432"
     volumes:
       - ${DBDATA_MANAGER}/:/var/lib/postgresql/data
     restart: always
-    command: -p 15432
+    command: -p 5432
     expose:
-      - "15432"
+      - "5432"
