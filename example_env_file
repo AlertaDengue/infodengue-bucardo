@@ -1,0 +1,17 @@
+# Environment Variables
+DBDATA_MANAGER=/Storage/dbdata_manager
+PWD=/infodengue/infodengue-bucardo
+
+# SERVER ORIGIN CONNECT DATA
+HOST_HETZNER=172.24.0.2
+PORT_HETZNER=25432
+DB_HETZNER=dengue 
+USER_HETZNER=admin 
+PASS_HETZNER=dengue
+
+# SERVER DESTINY CONNECT DATA
+HOST_FGV=172.24.0.3
+PORT_FGV=35432
+DB_FGV=dengue 
+USER_FGV=admin 
+PASS_FGV=dengue

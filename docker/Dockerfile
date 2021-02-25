@@ -1,6 +1,5 @@
 FROM mdillon/postgis:9.6
 
-
 RUN apt-get -qq update --yes \
     && apt-get -qq install --yes --no-install-recommends \
     build-essential debconf git make wget\
@@ -13,11 +12,24 @@ RUN apt-get -qq update --yes \
 RUN mkdir -p /var/log/bucardo /var/run/bucardo \
 && chown -R postgres:postgres /var/log/bucardo /var/run/bucardo
 
-ADD docker/postgres_setup/* /docker-entrypoint-initdb.d/
+# Install Bucardo:
+RUN cd /tmp \
+&& wget http://bucardo.org/downloads/Bucardo-5.4.1.tar.gz \
+&& tar xvfz Bucardo-5.4.1.tar.gz \
+&& mv Bucardo-5.4.1/ /Bucardo \
+&& cd /Bucardo \
+&& perl Makefile.PL \
+&& apt install make \
+&& make \
+&& make install
 
-#RUN mkdir /Bucardo
-#ADD docker/script.sh /Bucardo
-ADD docker/.bucardorc $HOME/.bucardorc
-WORKDIR /Bucardo
+COPY docker/.bucardorc $HOME/.bucardorc
 
-EXPOSE 5432
+COPY docker/postgres_setup/00-bucardo_roles.sql /docker-entrypoint-initdb.d/
+
+COPY docker/entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+# RUN ./entrypoint.sh
+# CMD ["/bin/bash","-c","/entrypoint.sh"]
