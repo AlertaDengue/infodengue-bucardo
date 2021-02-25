@@ -21,13 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Copy example_env_file as env
-        run: |
-          cp example_env_file .env
-
-      - name: Build and deploy manager
+      - name: Build and up manager
         id: manager
         run: |
           make build SERVICES=manager
-          make deploy SERVICES=manager
+          make start SERVICES=manager
           docker ps
