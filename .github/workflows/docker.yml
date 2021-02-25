@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7]
+    
+    env:
+      COMPOSE_FILE: docker/docker-compose.yml
+      PYTHON_VERSION: ${{ matrix.python-version }}
+      
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Copy example_env_file as env
+        run: |
+          cp example_env_file .env
+
+      - name: Build and deploy manager
+        id: manager
+        run: |
+          make build SERVICES=manager
+          make deploy SERVICES=manager
+          docker ps
