@@ -1,0 +1,15 @@
+# Environment Variables
+DBDATA_MANAGER=/Storage/dbdata_manager
+PWD=/infodengue/infodengue-bucardo
+
+HOST_HETZNER=172.0.0.2
+PORT_HETZNER=5432
+DB_HETZNER=bancodedados 
+USER_HETZNER=usuario 
+PASS_HETZNER=senha
+
+HOST_FGV=172.0.0.3
+PORT_FGV=5432
+DB_FGV=bancodedados 
+USER_FGV=usuario 
+PASS_FGV=senha
